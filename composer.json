@@ -2,6 +2,9 @@
     "name": "rivera_rh/permisos-laravel",
     "description": "Paquete de gestión de roles y permisos para Laravel",
     "type": "library",
+    "version": "1.0.0",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": "^7.3|^8.0",
         "illuminate/support": "^8.0|^9.0"
