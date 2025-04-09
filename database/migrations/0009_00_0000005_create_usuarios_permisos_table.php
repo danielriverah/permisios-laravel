@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign($userPrimaryKey)->references($userPrimaryKey)->on($userTable)->onDelete('cascade');
             $table->foreign('permiso_id')->references('permiso_id')->on('permisos')->onDelete('cascade');
 
-            $table->primary([$userPrimaryKey, 'permiso_id']);
+            $table->primary(['usuario_permiso_id',$userPrimaryKey, 'permiso_id']);
         });
     }
 

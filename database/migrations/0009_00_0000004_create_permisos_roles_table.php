@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreign('rol_id')->references('rol_id')->on('roles')->onDelete('cascade');
             $table->foreign('permiso_id')->references('permiso_id')->on('permisos')->onDelete('cascade');
 
-            $table->primary(['rol_id', 'permiso_id']);
+            $table->primary(['permiso_rol_id','rol_id', 'permiso_id']);
         });
     }
 

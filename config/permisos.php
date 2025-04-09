@@ -21,4 +21,5 @@ return [
         // ...
         //Rivera\Permisos\PermisosServiceProvider::class,
     ],
+    'view_style' => env('PERMISOS_VIEW_STYLE', 'materialize'),
 ];
