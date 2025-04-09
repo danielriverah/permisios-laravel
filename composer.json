@@ -1,5 +1,5 @@
 {
-    "name": "rivera/permisos-laravel",
+    "name": "rivera_rh/permisos-laravel",
     "description": "Paquete de gestión de roles y permisos para Laravel",
     "type": "library",
     "require": {
