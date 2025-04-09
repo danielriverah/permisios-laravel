@@ -8,6 +8,10 @@ class CreatePermisosTables extends Migration
 {
     public function up()
     {
+        // Obtener dinámicamente el nombre de la tabla y la clave primaria del modelo de usuario
+        $userTable = config('permisos.user_table'); // Obtenemos la tabla de usuario desde la configuración
+        $userPrimaryKey = config('permisos.user_primary_key'); // Obtenemos la clave primaria del usuario
+
         // Tabla roles
         Schema::create('roles', function (Blueprint $table) {
             $table->id('rol_id');
@@ -26,14 +30,14 @@ class CreatePermisosTables extends Migration
         });
 
         // Tabla usuario_roles
-        Schema::create('usuario_roles', function (Blueprint $table) {
-            $table->unsignedBigInteger('usuario_id');
+        Schema::create('usuario_roles', function (Blueprint $table) use($userTable, $userPrimaryKey) {
+            $table->unsignedBigInteger($userPrimaryKey);
             $table->unsignedBigInteger('rol_id');
 
-            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign($userPrimaryKey)->references($userPrimaryKey)->on($userTable)->onDelete('cascade');
             $table->foreign('rol_id')->references('rol_id')->on('roles')->onDelete('cascade');
 
-            $table->primary(['usuario_id', 'rol_id']);
+            $table->primary([$userPrimaryKey, 'rol_id']);
         });
 
         // Tabla permisos_roles
@@ -48,15 +52,15 @@ class CreatePermisosTables extends Migration
         });
 
         // Tabla usuario_permisos (permisos individuales)
-        Schema::create('usuario_permisos', function (Blueprint $table) {
-            $table->unsignedBigInteger('usuario_id');
+        Schema::create('usuario_permisos', function (Blueprint $table) use($userTable, $userPrimaryKey) {
+            $table->unsignedBigInteger($userPrimaryKey);
             $table->unsignedBigInteger('permiso_id');
             $table->boolean('permitido')->default(true); // true = permitido, false = excluido
 
-            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign($userPrimaryKey)->references($userPrimaryKey)->on($userTable)->onDelete('cascade');
             $table->foreign('permiso_id')->references('permiso_id')->on('permisos')->onDelete('cascade');
 
-            $table->primary(['usuario_id', 'permiso_id']);
+            $table->primary([$userPrimaryKey, 'permiso_id']);
         });
     }
 
