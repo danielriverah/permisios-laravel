@@ -1,0 +1,14 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Rivera\\Permisos\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rivera\\Permisos\\PermisosServiceProvider"
+            ]
+        }
+    }
+}
