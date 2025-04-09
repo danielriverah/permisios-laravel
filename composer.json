@@ -1,4 +1,11 @@
 {
+    "name": "rivera/permisos-laravel",
+    "description": "Paquete de gestión de roles y permisos para Laravel",
+    "type": "library",
+    "require": {
+        "php": "^7.3|^8.0",
+        "illuminate/support": "^8.0|^9.0"
+    },
     "autoload": {
         "psr-4": {
             "Rivera\\Permisos\\": "src/"
@@ -10,5 +17,12 @@
                 "Rivera\\Permisos\\PermisosServiceProvider"
             ]
         }
-    }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+        "name": "Daniel Rivera Herrada",
+        "email": "drh_river@hotmail.com"
+        }
+    ]
 }
