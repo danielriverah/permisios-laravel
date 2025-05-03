@@ -38,6 +38,7 @@ class PermisosServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \Rivera\Permisos\Console\InstallPermisosCommand::class,
+                \Rivera\Permisos\Console\UninstallPermisosCommand::class,
             ]);
         }
     }
