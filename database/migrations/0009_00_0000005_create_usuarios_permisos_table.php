@@ -12,21 +12,21 @@ return new class extends Migration
         $userTable = config('permisos.user_table'); // Obtenemos la tabla de usuario desde la configuración
         $userPrimaryKey = config('permisos.user_primary_key'); // Obtenemos la clave primaria del usuario
 
-        Schema::create('usuario_permisos', function (Blueprint $table) use($userTable, $userPrimaryKey) {
-            $table->increments('usuario_permiso_id'); // Clave primaria de la tabla
+        Schema::create('usuarios_permisos', function (Blueprint $table) use($userTable, $userPrimaryKey) {
             $table->unsigneInteger($userPrimaryKey);
             $table->unsignedInteger('permiso_id');
-            $table->boolean('permitido')->default(true); // true = permitido, false = excluido
+            $table->boolean('permite')->default(true); // true = permitido, false = excluido
+            $table->unsignedInteger('prioridad')->default(1); // Prioridad del permiso
 
             $table->foreign($userPrimaryKey)->references($userPrimaryKey)->on($userTable)->onDelete('cascade');
             $table->foreign('permiso_id')->references('permiso_id')->on('permisos')->onDelete('cascade');
 
-            $table->primary(['usuario_permiso_id',$userPrimaryKey, 'permiso_id']);
+            $table->primary([$userPrimaryKey, 'permiso_id']);
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('usuario_permisos');
+        Schema::dropIfExists('usuarios_permisos');
     }
 };

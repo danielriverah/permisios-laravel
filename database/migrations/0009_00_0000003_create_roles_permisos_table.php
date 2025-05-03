@@ -8,20 +8,21 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('permisos_roles', function (Blueprint $table) {
-            $table->increments('permiso_rol_id'); // Clave primaria de la tabla
+        Schema::create('roles_permiso', function (Blueprint $table) {
             $table->unsignedInteger('rol_id');
             $table->unsignedInteger('permiso_id');
+            $table->boolean('permite')->default(true);
+            $table->unsignedInteger('prioridad')->default(1);
 
             $table->foreign('rol_id')->references('rol_id')->on('roles')->onDelete('cascade');
             $table->foreign('permiso_id')->references('permiso_id')->on('permisos')->onDelete('cascade');
 
-            $table->primary(['permiso_rol_id','rol_id', 'permiso_id']);
+            $table->primary(['rol_id', 'permiso_id']);
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('permisos_roles');
+        Schema::dropIfExists('roles_permiso');
     }
 };

@@ -11,19 +11,22 @@ return new class extends Migration
         $userTable = config('permisos.user_table'); // Obtenemos la tabla de usuario desde la configuración
         $userPrimaryKey = config('permisos.user_primary_key'); // Obtenemos la clave primaria del usuario
 
-        Schema::create('usuario_roles', function (Blueprint $table) use($userTable, $userPrimaryKey) {
-            $table->increments('usuario_rol_id'); // Clave primaria de la tabla,
+        Schema::create('usuarios_roles', function (Blueprint $table) use($userTable, $userPrimaryKey) {
             $table->unsignedInteger($userPrimaryKey);
             $table->unsignedInteger('rol_id');
             $table->foreign($userPrimaryKey)->references($userPrimaryKey)->on($userTable)->onDelete('cascade');
             $table->foreign('rol_id')->references('rol_id')->on('roles')->onDelete('cascade');
+            $table->timestamp('fecha_creacion')->useCurrent();
+            $table->string('usuario_creacion')->default('SYSTEM');
+            $table->timestamp('fecha_modificacion')->nullable()->useCurrentOnUpdate();
+            $table->string('usuario_modificacion')->nullable();
 
-            $table->primary(['usuario_rol_id',$userPrimaryKey, 'rol_id']);
+            $table->primary([$userPrimaryKey, 'rol_id']);
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('usuario_roles');
+        Schema::dropIfExists('usuarios_roles');
     }
 };
