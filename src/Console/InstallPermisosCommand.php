@@ -11,10 +11,10 @@ class InstallPermisosCommand extends Command{
     public function handle()
     {
         $basePath = base_path();
-        $sourceControllers = __DIR__ . '/../../Controllers';
+        $sourceControllers = __DIR__ . '/../Controllers';
         $targetControllers = $basePath . '/app/Http/Controllers/Permisos';
 
-        $sourceModels = __DIR__ . '/../../Models';
+        $sourceModels = __DIR__ . '/../Models';
         $targetModels = $basePath . '/app/Models/Permisos';
 
         // Publicar controladores
