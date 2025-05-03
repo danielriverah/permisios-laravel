@@ -16,7 +16,7 @@ class UninstallPermisosCommand extends Command
             app_path('Models/Permisos/Rol.php'),
             app_path('Models/Permisos/Permiso.php'),
             app_path('Http/Controllers/Permisos/RolController.php'),
-            app_path('Http/Controllers/Permisos/PermisoController.php'),
+            app_path('Http/Controllers/Permisos/PermisosController.php'),
             config_path('permisos.php'),
         ];
 
