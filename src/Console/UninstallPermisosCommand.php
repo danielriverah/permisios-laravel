@@ -13,10 +13,10 @@ class UninstallPermisosCommand extends Command
     public function handle()
     {
         $paths = [
-            app_path('Models/Rol.php'),
-            app_path('Models/Permiso.php'),
-            app_path('Http/Controllers/RolController.php'),
-            app_path('Http/Controllers/PermisoController.php'),
+            app_path('Models/Permisos/Rol.php'),
+            app_path('Models/Permisos/Permiso.php'),
+            app_path('Http/Controllers/Permisos/RolController.php'),
+            app_path('Http/Controllers/Permisos/PermisoController.php'),
             config_path('permisos.php'),
         ];
 
