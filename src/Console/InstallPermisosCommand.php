@@ -11,23 +11,31 @@ class InstallPermisosCommand extends Command{
     public function handle()
     {
         $basePath = base_path();
+        // Publicar controladores
         $sourceControllers = __DIR__ . '/../Controllers';
         $targetControllers = $basePath . '/app/Http/Controllers/Permisos';
-
-        $sourceModels = __DIR__ . '/../Models';
-        $targetModels = $basePath . '/app/Models/Permisos';
-
-        // Publicar controladores
         if (!File::exists($targetControllers)) {
             File::makeDirectory($targetControllers, 0755, true);
         }
         File::copyDirectory($sourceControllers, $targetControllers);
 
         // Publicar modelos
+        $sourceModels = __DIR__ . '/../Models';
+        $targetModels = $basePath . '/app/Models/Permisos';
         if (!File::exists($targetModels)) {
             File::makeDirectory($targetModels, 0755, true);
         }
         File::copyDirectory($sourceModels, $targetModels);
+
+        // Config
+        $sourceConfig = __DIR__ . '/../../config/permisos.php';
+        $targetConfig = config_path('permisos.php');
+        if (!File::exists($targetConfig)) {
+            File::copy($sourceConfig, $targetConfig);
+            $this->info('Archivo de configuración copiado a config/permisos.php');
+        } else {
+            $this->warn('El archivo de configuración ya existe en config/permisos.php');
+        }
 
         $this->info('Controladores y modelos publicados correctamente.');
     }

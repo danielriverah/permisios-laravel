@@ -11,15 +11,15 @@ class PermisosServiceProvider extends ServiceProvider
     public function register()
     {
         // Publicar config
-        $this->mergeConfigFrom(__DIR__.'/../config/permisos.php', 'permisos');
+        //$this->mergeConfigFrom(__DIR__.'/../config/permisos.php', 'permisos');
     }
 
     public function boot()
     {
         // Publicar archivos si el usuario quiere copiar
-        $this->publishes([
+        /*$this->publishes([
             __DIR__.'/../config/permisos.php' => config_path('permisos.php'),
-        ], 'config');
+        ], 'config');*/
        /* // Publicar migraciones
         $this->publishes([
             __DIR__.'/../database/migrations' => database_path('migrations'),
