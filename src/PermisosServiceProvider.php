@@ -16,11 +16,11 @@ class PermisosServiceProvider extends ServiceProvider
 
     public function boot()
     {
-       /* // Publicar archivos si el usuario quiere copiar
+        // Publicar archivos si el usuario quiere copiar
         $this->publishes([
             __DIR__.'/../config/permisos.php' => config_path('permisos.php'),
         ], 'config');
-        // Publicar migraciones
+       /* // Publicar migraciones
         $this->publishes([
             __DIR__.'/../database/migrations' => database_path('migrations'),
         ], 'migrations');
